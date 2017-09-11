@@ -12,12 +12,9 @@
  * @since 1.0.0
  */
 function barebones_scripts() {
-	$parent_style = 'parent-style';
 
 	wp_enqueue_style( 'barebones-bootstrap', get_stylesheet_directory_uri() . '/assets/bootstrap/css/bootstrap.min.css' );
-	wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
-	wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( $parent_style ) );
-
+	wp_enqueue_style( 'barebones-style', get_stylesheet_uri() );
 	wp_enqueue_script( 'backbone-jquery-bootstrap', get_stylesheet_directory_uri() . '/assets/bootstrap/js/bootstrap.min.js', array( 'jquery' ), HESTIA_VENDOR_VERSION, true );
 	wp_enqueue_script( 'backbone-scripts', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array( /*'jquery-hestia-material', 'jquery-ui-core'*/ ),HESTIA_VERSION, true );
 
@@ -91,6 +88,9 @@ function barebones_dequeue_script() {
 
 	// Font awesome
 	wp_deregister_style('font-awesome');
+
+	// Hestia Style
+	wp_deregister_style('hestia_style');
 
 	// Deregister Customizer Style
 	if ( is_customize_preview() ) {
@@ -181,5 +181,40 @@ function barebones_filter_features( $array ){
 }
 add_filter( 'hestia_filter_features', 'barebones_filter_features' );
 
+/**
+ * Filter nav classes.
+ *
+ * @param string $classes Classes on navbar.
+ *
+ * @return string
+ * @since 1.0.0
+ */
+function barebones_filter_nav_classes( $classes ){
+	$classes = explode(' ', $classes);
+	if( !empty( $classes ) ){
+		foreach( $classes as $key => $nav_class ){
+			if( $nav_class === 'navbar-color-on-scroll' || $nav_class === 'navbar-transparent' ){
+				unset( $classes[$key] );
+			}
+		}
+	}
+	return implode(' ', $classes);
+}
+add_filter('hestia_header_classes','barebones_filter_nav_classes');
 
 
+/**
+ * Get inline style from customizer.
+ * This function is necessary because there isn't a script with a handle 'hestia_script' ( we removed it ) so the
+ * wp_add_inline_style won't add inline style for top bar.
+ *
+ * @since 1.0.0
+ */
+function barebones_top_bar_inline_style() {
+	if( !function_exists( 'hestia_get_top_bar_style' ) ){
+		return;
+	}
+	$custom_css = hestia_get_top_bar_style();
+	wp_add_inline_style( 'barebones-style', $custom_css );
+}
+add_action( 'wp_enqueue_scripts', 'barebones_top_bar_inline_style', 99 );

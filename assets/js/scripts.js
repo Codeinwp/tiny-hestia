@@ -7,17 +7,11 @@ jQuery(document).ready(function ($) {
     $.hestia = {
         'init':function () {
             this.navbar();
-            this.header();
             this.fixPadding();
             this.necessaryClasses();
             this.sidebarToggle();
             this.shop();
             this.detectIos();
-        },
-
-        'header':function(){
-            this.parallaxHeader();
-
         },
 
         'navbar':function () {
@@ -37,8 +31,9 @@ jQuery(document).ready(function ($) {
                 $(this).toggleClass('caret-open');
                 $(this).parent().siblings().toggleClass('open');
 
-                if ($('.navbar .dropdown').hasClass('open')) {
-                    $('.navbar .dropdown').removeClass('open');
+                var navbarDropdown = $('.navbar .dropdown');
+                if ( navbarDropdown.hasClass('open') ) {
+                    navbarDropdown.removeClass('open');
                     $(this).toggleClass('caret-open');
                     $(this).parent().siblings().toggleClass('open');
                 }
@@ -49,8 +44,9 @@ jQuery(document).ready(function ($) {
          * Add size for each search input in top-bar
          */
         'topBarSearch':function(){
-            if ($('.hestia-top-bar input[type=search]').length > 0) {
-                $('.hestia-top-bar input[type=search]').each(function () {
+            var searchInput = $('.hestia-top-bar input[type=search]');
+            if ( searchInput.length > 0 ) {
+                searchInput.each(function () {
                     $(this).attr('size', $(this).parent().find('.control-label').text().replace(/ |…/g, '').length);
                 });
             }
@@ -111,37 +107,15 @@ jQuery(document).ready(function ($) {
                 }
             }
 
-            if (typeof $('input.select2-input') !== 'undefined') {
-                $('input.select2-input').removeClass('form-control');
+            var select2Input = $('input.select2-input');
+            if (typeof select2Input !== 'undefined') {
+                select2Input.removeClass('form-control');
             }
 
-            if (typeof $('.form-control') !== 'undefined') {
-                $('.form-control').parent().addClass('form-group');
+            var formControl = $('.form-control');
+            if ( typeof formControl !== 'undefined' ) {
+                formControl.parent().addClass('form-group');
             }
-        },
-
-        /**
-         * Add parallax effect on pages with header.
-         * It executes only on blog and single post.
-         */
-        'parallaxHeader':function(){
-            var big_image = $('.page-header[data-parallax="active"]');
-
-            if( window_width < 768 || big_image.length === 0){
-                return;
-            }
-
-            $(window).on('scroll', debounce( function () {
-                if ( isElementInViewport( big_image ) ) {
-                    var oVal = ( $(window).scrollTop() / 3 );
-                    big_image.css({
-                        'transform': 'translate3d(0,' + oVal + 'px,0)',
-                        '-webkit-transform': 'translate3d(0,' + oVal + 'px,0)',
-                        '-ms-transform': 'translate3d(0,' + oVal + 'px,0)',
-                        '-o-transform': 'translate3d(0,' + oVal + 'px,0)'
-                    });
-                }
-            }, 4 ) );
         },
 
         /**

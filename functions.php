@@ -13,14 +13,12 @@
  */
 function barebones_scripts() {
 	$parent_style = 'parent-style';
-	wp_enqueue_style( 'barebones-bootstrap', get_stylesheet_directory_uri() . '/assets/bootstrap/css/bootstrap.min.css' );
 
+	wp_enqueue_style( 'barebones-bootstrap', get_stylesheet_directory_uri() . '/assets/bootstrap/css/bootstrap.min.css' );
 	wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
 	wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( $parent_style ) );
 
-
 	wp_enqueue_script( 'backbone-jquery-bootstrap', get_stylesheet_directory_uri() . '/assets/bootstrap/js/bootstrap.min.js', array( 'jquery' ), HESTIA_VENDOR_VERSION, true );
-
 	wp_enqueue_script( 'backbone-scripts', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array( /*'jquery-hestia-material', 'jquery-ui-core'*/ ),HESTIA_VERSION, true );
 
 }
@@ -86,6 +84,14 @@ function barebones_dequeue_script() {
 	// Bootstrap
 	wp_deregister_style('bootstrap');
 
+	// Customizer style
+	if ( is_customize_preview() ) {
+		wp_deregister_style( 'hestia-customizer-preview-style' );
+	}
+
+	// Font awesome
+	wp_deregister_style('font-awesome');
+
 	// Deregister Customizer Style
 	if ( is_customize_preview() ) {
 		wp_deregister_style( 'hestia-customizer-preview-style' );
@@ -99,8 +105,21 @@ function barebones_dequeue_script() {
 
 	// Dequeue scriptsfrom parent
 	wp_dequeue_script( 'hestia_scripts' );
+
 }
 add_action( 'wp_enqueue_scripts', 'barebones_dequeue_script', 20 );
+
+/**
+ * Dequeue scripts that are loading in customizer.
+ *
+ * @since 1.0.0
+ */
+function barebones_dequeue_customizer_scripts(){
+
+	// Dequeue customizer controls script
+	wp_dequeue_script( 'hestia_customize_controls' );
+}
+add_action( 'customize_controls_enqueue_scripts', 'barebones_dequeue_customizer_scripts', 20 );
 
 /**
  * Remove unnecessary actions from theme.

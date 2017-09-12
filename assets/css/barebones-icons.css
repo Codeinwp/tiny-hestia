@@ -1,0 +1,46 @@
+.fa.fa-cart-plus{
+    background: url("../img/iconsspritsheet.png") no-repeat;
+    display: block;
+    height: 17px;
+}
+
+
+.search-form:after{
+    content: '';
+    background: url(../img/iconsspritsheet.png) no-repeat;
+    background-position: 18px -18px;
+    width: 36px;
+    height: 25px;
+}
+
+.woocommerce .woocommerce-ordering:before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    right: 17px;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+
+@media (max-width: 768px) {
+    .navbar .navbar-nav .dropdown a .caret:before{
+        content: '';
+        position: absolute;
+        top: 13px;
+        right: 11px;
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: 2px;
+        vertical-align: middle;
+        border-top: 4px dashed;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+    }
+}

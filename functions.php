@@ -59,6 +59,14 @@ function barebones_dequeue_script() {
 	// Dequeue scripts from parent
 	wp_dequeue_script( 'hestia_scripts' );
 
+	// Dequeue hammer.js from pro
+	wp_dequeue_script( 'jquery-hammer' );
+
+	// Dequeue tabs script from pro
+	wp_dequeue_script( 'hestia-tabs-addon-script' );
+
+
+
 }
 add_action( 'wp_enqueue_scripts', 'barebones_dequeue_script', 20 );
 
@@ -184,6 +192,7 @@ function barebones_filter_features( $array ){
 		'features/feature-header-settings',
 		'features/feature-about-page',
 		'typography/typography-settings',
+		'features/feature-pro-manager',
 	);
 
 	return array_merge(
@@ -229,23 +238,3 @@ function barebones_top_bar_inline_style() {
 	wp_add_inline_style( 'barebones-style', $custom_css );
 }
 add_action( 'wp_enqueue_scripts', 'barebones_top_bar_inline_style', 99 );
-
-
-/**
- * Load backup style for icons when font awesome is not loaded
- *
- * @since 1.0.0
- */
-function barebones_font_awesome_backup() {
-	global $wp_styles;
-	$srcs = array_map('basename', (array) wp_list_pluck($wp_styles->registered, 'src') );
-	foreach ( $srcs as $source ){
-		if( strstr( strtolower( $source ), 'font-awesome') || strstr( strtolower( $source ), 'fontawesome') ){
-			return true;
-		}
-	}
-
-	wp_enqueue_style( 'barebones-icons', get_stylesheet_directory_uri() . '/assets/css/barebones-icons.css' );
-	return false;
-}
-add_action('wp_enqueue_scripts', 'barebones_font_awesome_backup', 99);

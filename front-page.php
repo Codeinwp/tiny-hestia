@@ -2,7 +2,7 @@
 /**
  * Frontpage main file
  *
- * @package barebones
+ * @package tiny-hestia
  * @since 1.0.0
  */
 

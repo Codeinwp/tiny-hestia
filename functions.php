@@ -1,8 +1,8 @@
 <?php
 /**
- * Hestia Bare Bones functions and definitions.
+ * Tiny Hestia functions and definitions.
  *
- * @package barebones
+ * @package tiny-hestia
  * @since 1.0.0
  */
 
@@ -11,15 +11,15 @@
  *
  * @since 1.0.0
  */
-function barebones_scripts() {
+function tiny_hestia_scripts() {
 
-	wp_enqueue_style( 'barebones-bootstrap', get_stylesheet_directory_uri() . '/assets/bootstrap/css/bootstrap.min.css' );
-	wp_enqueue_style( 'barebones-style', get_stylesheet_uri() );
-	wp_enqueue_script( 'backbone-jquery-bootstrap', get_stylesheet_directory_uri() . '/assets/bootstrap/js/bootstrap.min.js', array( 'jquery' ), HESTIA_VENDOR_VERSION, true );
-	wp_enqueue_script( 'backbone-scripts', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array( /*'jquery-hestia-material', 'jquery-ui-core'*/ ),HESTIA_VERSION, true );
+	wp_enqueue_style( 'tiny-hestia-bootstrap', get_stylesheet_directory_uri() . '/assets/bootstrap/css/bootstrap.min.css' );
+	wp_enqueue_style( 'tiny-hestia-style', get_stylesheet_uri() );
+	wp_enqueue_script( 'tiny-hestia-jquery-bootstrap', get_stylesheet_directory_uri() . '/assets/bootstrap/js/bootstrap.min.js', array( 'jquery' ), HESTIA_VENDOR_VERSION, true );
+	wp_enqueue_script( 'tiny-hestia-scripts', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array( /*'jquery-hestia-material', 'jquery-ui-core'*/ ),HESTIA_VERSION, true );
 
 }
-add_action( 'wp_enqueue_scripts', 'barebones_scripts',99);
+add_action( 'wp_enqueue_scripts', 'tiny_hestia_scripts',99);
 
 /**
  * Dequeue scripts that are no longer used
@@ -29,7 +29,7 @@ add_action( 'wp_enqueue_scripts', 'barebones_scripts',99);
  *
  * @since 1.0.0
  */
-function barebones_dequeue_script() {
+function tiny_hestia_dequeue_script() {
 
 	// Bootstrap
 	wp_deregister_style('bootstrap');
@@ -68,7 +68,7 @@ function barebones_dequeue_script() {
 
 
 }
-add_action( 'wp_enqueue_scripts', 'barebones_dequeue_script', 20 );
+add_action( 'wp_enqueue_scripts', 'tiny_hestia_dequeue_script', 20 );
 
 
 /**
@@ -76,22 +76,22 @@ add_action( 'wp_enqueue_scripts', 'barebones_dequeue_script', 20 );
  *
  * @since 1.0.0
  */
-function barebones_customizer_scripts() {
-	wp_enqueue_script( 'barebones_customizer_scripts', get_stylesheet_directory_uri() . '/assets/js/customizer-controls.js', array( 'jquery', 'customize-preview' ), HESTIA_VERSION, true );
+function tiny_hestia_customizer_scripts() {
+	wp_enqueue_script( 'tiny-hestia-customizer-scripts', get_stylesheet_directory_uri() . '/assets/js/customizer-controls.js', array( 'jquery', 'customize-preview' ), HESTIA_VERSION, true );
 }
-add_action( 'customize_controls_enqueue_scripts', 'barebones_customizer_scripts' );
+add_action( 'customize_controls_enqueue_scripts', 'tiny_hestia_customizer_scripts' );
 
 /**
  * Dequeue scripts that are loading in customizer.
  *
  * @since 1.0.0
  */
-function barebones_dequeue_customizer_scripts(){
+function tiny_hestia_dequeue_customizer_scripts(){
 
 	// Dequeue customizer controls script
 	wp_dequeue_script( 'hestia_customize_controls' );
 }
-add_action( 'customize_controls_enqueue_scripts', 'barebones_dequeue_customizer_scripts', 20 );
+add_action( 'customize_controls_enqueue_scripts', 'tiny_hestia_dequeue_customizer_scripts', 20 );
 
 /**
  * Function necessary to inherit theme mods from parent theme
@@ -102,7 +102,7 @@ add_action( 'customize_controls_enqueue_scripts', 'barebones_dequeue_customizer_
  * @return mixed
  * @since 1.0.0
  */
-function barebones_update_theme_mods( $value, $old_value ){
+function tiny_hestia_update_theme_mods( $value, $old_value ){
 	update_option( 'theme_mods_' . get_template(), $value );
 	return $old_value; // prevent update to child theme mods
 }
@@ -114,13 +114,13 @@ function barebones_update_theme_mods( $value, $old_value ){
  * @return mixed
  * @since 1.0.0
  */
-function barebones_get_theme_mods( $default ){
+function tiny_hestia_get_theme_mods( $default ){
 	return get_option( 'theme_mods_' . get_template(), $default );
 }
 
 if ( get_stylesheet() !== get_template() ) {
-	add_filter( 'pre_update_option_theme_mods_' . get_stylesheet(), 'barebones_update_theme_mods', 10, 2 );
-	add_filter( 'pre_option_theme_mods_' . get_stylesheet(), 'barebones_get_theme_mods' );
+	add_filter( 'pre_update_option_theme_mods_' . get_stylesheet(), 'tiny_hestia_update_theme_mods', 10, 2 );
+	add_filter( 'pre_option_theme_mods_' . get_stylesheet(), 'tiny_hestia_get_theme_mods' );
 }
 
 /**
@@ -128,7 +128,7 @@ if ( get_stylesheet() !== get_template() ) {
  *
  * @since 1.0.0
  */
-function barebones_unrgister_sidebar(){
+function tiny_hestia_unrgister_sidebar(){
 	$sidebars_array = array(
 		'subscribe-widgets',
 		'blog-subscribe-widgets',
@@ -138,14 +138,14 @@ function barebones_unrgister_sidebar(){
 		unregister_sidebar( $sidebar_id );
 	}
 }
-add_action( 'widgets_init', 'barebones_unrgister_sidebar', 20 );
+add_action( 'widgets_init', 'tiny_hestia_unrgister_sidebar', 20 );
 
 /**
  * Remove unnecessary actions from theme.
  *
  * @since 1.0.0
  */
-function barebones_remove_actions_and_filters() {
+function tiny_hestia_remove_actions_and_filters() {
 
 	remove_action('after_setup_theme', 'hestia_starter_content');
 
@@ -153,7 +153,7 @@ function barebones_remove_actions_and_filters() {
 
 	remove_filter( 'hestia_filter_features', 'hestia_filter_features' );
 }
-add_action( 'after_setup_theme', 'barebones_remove_actions_and_filters', 0 );
+add_action( 'after_setup_theme', 'tiny_hestia_remove_actions_and_filters', 0 );
 
 
 /**
@@ -162,11 +162,11 @@ add_action( 'after_setup_theme', 'barebones_remove_actions_and_filters', 0 );
  * @since 1.0.0
  * @return array
  */
-function barebones_remove_from_companion(){
+function tiny_hestia_remove_from_companion(){
 	return array();
 }
-add_filter( 'themeisle_companion_hestia_sections', 'barebones_remove_from_companion' );
-add_filter( 'themeisle_companion_hestia_controls', 'barebones_remove_from_companion' );
+add_filter( 'themeisle_companion_hestia_sections', 'tiny_hestia_remove_from_companion' );
+add_filter( 'themeisle_companion_hestia_controls', 'tiny_hestia_remove_from_companion' );
 
 /**
  * Filter classes on recaptcha warp in pirateforms to remove the code from scripts.js
@@ -174,17 +174,17 @@ add_filter( 'themeisle_companion_hestia_controls', 'barebones_remove_from_compan
  * @since 1.0.0
  * @return array
  */
-function barebones_pirateforms_recaptcha_classes(){
+function tiny_hestia_pirateforms_recaptcha_classes(){
 	return array('col-md-12 col-xs-12 col-sm-6 form_field_wrap form_captcha_wrap');
 }
-add_filter( 'pirateform_wrap_classes_captcha', 'barebones_pirateforms_recaptcha_classes' );
+add_filter( 'pirateform_wrap_classes_captcha', 'tiny_hestia_pirateforms_recaptcha_classes' );
 
 /**
  * Define Allowed Files to be included.
  *
  * @since 1.0.0
  */
-function barebones_filter_features( $array ){
+function tiny_hestia_filter_features( $array ){
 	$files_to_load = array(
 		'features/feature-general-settings',
 		'features/feature-color-settings',
@@ -199,7 +199,7 @@ function barebones_filter_features( $array ){
 		$array, $files_to_load
 	);
 }
-add_filter( 'hestia_filter_features', 'barebones_filter_features' );
+add_filter( 'hestia_filter_features', 'tiny_hestia_filter_features' );
 
 /**
  * Filter nav classes.
@@ -209,7 +209,7 @@ add_filter( 'hestia_filter_features', 'barebones_filter_features' );
  * @return string
  * @since 1.0.0
  */
-function barebones_filter_nav_classes( $classes ){
+function tiny_hestia_filter_nav_classes( $classes ){
 	$classes = explode(' ', $classes);
 	if( !empty( $classes ) ){
 		foreach( $classes as $key => $nav_class ){
@@ -220,7 +220,7 @@ function barebones_filter_nav_classes( $classes ){
 	}
 	return implode(' ', $classes);
 }
-add_filter('hestia_header_classes','barebones_filter_nav_classes');
+add_filter('hestia_header_classes','tiny_hestia_filter_nav_classes');
 
 
 /**
@@ -230,11 +230,11 @@ add_filter('hestia_header_classes','barebones_filter_nav_classes');
  *
  * @since 1.0.0
  */
-function barebones_top_bar_inline_style() {
+function tiny_hestia_top_bar_inline_style() {
 	if( !function_exists( 'hestia_get_top_bar_style' ) ){
 		return;
 	}
 	$custom_css = hestia_get_top_bar_style();
-	wp_add_inline_style( 'barebones-style', $custom_css );
+	wp_add_inline_style( 'tiny-hestia-style', $custom_css );
 }
-add_action( 'wp_enqueue_scripts', 'barebones_top_bar_inline_style', 99 );
+add_action( 'wp_enqueue_scripts', 'tiny_hestia_top_bar_inline_style', 99 );

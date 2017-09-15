@@ -244,6 +244,9 @@ add_action( 'wp_enqueue_scripts', 'tiny_hestia_top_bar_inline_style', 99 );
  */
 function tiny_hestia_typography_style() {
 
+	if( !function_exists('hestia_get_fonts_style') ){
+		return;
+	}
 	$custom_css = hestia_get_fonts_style();
 	wp_add_inline_style( 'tiny-hestia-style', $custom_css );
 }

@@ -152,21 +152,18 @@ function tiny_hestia_remove_actions_and_filters() {
 	remove_filter( 'frontpage_template', 'hestia_filter_front_page_template' );
 
 	remove_filter( 'hestia_filter_features', 'hestia_filter_features' );
+
+	remove_action( 'hestia_blog_social_icons', 'hestia_social_icons' );
+
 }
 add_action( 'after_setup_theme', 'tiny_hestia_remove_actions_and_filters', 0 );
 
 
 /**
  * Remove sections and files from companion.
- *
- * @since 1.0.0
- * @return array
  */
-function tiny_hestia_remove_from_companion(){
-	return array();
-}
-add_filter( 'themeisle_companion_hestia_sections', 'tiny_hestia_remove_from_companion' );
-add_filter( 'themeisle_companion_hestia_controls', 'tiny_hestia_remove_from_companion' );
+add_filter( 'themeisle_companion_hestia_sections', '__return_empty_array' );
+add_filter( 'themeisle_companion_hestia_controls', ' __return_empty_array' );
 
 /**
  * Filter classes on recaptcha warp in pirateforms to remove the code from scripts.js

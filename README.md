@@ -32,12 +32,12 @@ Tiny Hestia is distributed under the terms of the GNU GPL
 
 Tiny Hestia bundles the following third-party resources:
 
-#### Scripts
+### Scripts
 Bootstrap, http://getbootstrap.com/ Copyright 2011-2015 Twitter, Inc  
 **License:** MIT License  
 Source: http://www.opensource.org/licenses/MIT  
 
-#### Images
+### Images
 
 License: All mystock.photos images are licensed under the terms of the Creative Commons Zero, http://creativecommons.org/publicdomain/zero/1.0/  
 

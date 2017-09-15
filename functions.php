@@ -163,7 +163,7 @@ add_action( 'after_setup_theme', 'tiny_hestia_remove_actions_and_filters', 0 );
  * Remove sections and files from companion.
  */
 add_filter( 'themeisle_companion_hestia_sections', '__return_empty_array' );
-add_filter( 'themeisle_companion_hestia_controls', ' __return_empty_array' );
+add_filter( 'themeisle_companion_hestia_controls', '__return_empty_array' );
 
 /**
  * Filter classes on recaptcha warp in pirateforms to remove the code from scripts.js
@@ -235,3 +235,47 @@ function tiny_hestia_top_bar_inline_style() {
 	wp_add_inline_style( 'tiny-hestia-style', $custom_css );
 }
 add_action( 'wp_enqueue_scripts', 'tiny_hestia_top_bar_inline_style', 99 );
+
+
+/**
+ * Adds inline style from customizer
+ *
+ * @since 1.0.1
+ */
+function tiny_hestia_typography_style() {
+
+	$custom_css = hestia_get_fonts_style();
+	wp_add_inline_style( 'tiny-hestia-style', $custom_css );
+}
+add_action( 'wp_enqueue_scripts', 'tiny_hestia_typography_style', 99 );
+
+/**
+ * Change default fonts to system fonts.
+ *
+ * @since 1.0.1
+ */
+function tiny_hestia_customize_register( $wp_customize ) {
+
+	$hestia_headings_font = $wp_customize->get_setting( 'hestia_headings_font');
+	if( !empty( $hestia_headings_font ) ){
+		$hestia_headings_font->default = 'Arial, Helvetica, sans-serif';
+	}
+
+	$hestia_body_font = $wp_customize->get_setting( 'hestia_body_font' );
+	if( !empty( $hestia_body_font ) ){
+		$hestia_body_font->default = 'Arial, Helvetica, sans-serif';
+	}
+}
+add_action( 'customize_register', 'tiny_hestia_customize_register', 99 );
+
+
+/**
+ * Change default parameter for headings and body fonts
+ *
+ * @since 1.0.1
+ */
+function tiny_hestia_default_fonts(){
+	return 'Arial, Helvetica, sans-serif';
+}
+add_filter('hestia_headings_default', 'tiny_hestia_default_fonts');
+add_filter('hestia_body_font_default', 'tiny_hestia_default_fonts');

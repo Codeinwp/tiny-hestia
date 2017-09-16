@@ -268,6 +268,19 @@ function tiny_hestia_customize_register( $wp_customize ) {
 	if( !empty( $hestia_body_font ) ){
 		$hestia_body_font->default = 'Arial, Helvetica, sans-serif';
 	}
+
+	$sections_to_remove = array(
+		'hestia_info_woocommerce',
+		'hestia_info_jetpack',
+		'hestia-theme-info-section',
+	);
+	foreach ( $sections_to_remove as $section ){
+		$customize_section = $wp_customize->get_section( $section );
+		if( !empty( $customize_section ) ){
+			$wp_customize->remove_section( $section );
+		}
+	}
+
 }
 add_action( 'customize_register', 'tiny_hestia_customize_register', 99 );
 

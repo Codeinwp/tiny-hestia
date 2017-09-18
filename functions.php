@@ -273,6 +273,7 @@ function tiny_hestia_customize_register( $wp_customize ) {
 		'hestia_info_woocommerce',
 		'hestia_info_jetpack',
 		'hestia-theme-info-section',
+		'hestia_theme_info_main_section'
 	);
 	foreach ( $sections_to_remove as $section ){
 		$customize_section = $wp_customize->get_section( $section );

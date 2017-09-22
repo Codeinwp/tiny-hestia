@@ -6,6 +6,7 @@
  * @since 1.0.0
  */
 
+define( 'TINY_HESTIA_VERSION', '1.0.5');
 /**
  * Enqueue style of parent theme and styles from current child theme.
  *
@@ -13,10 +14,10 @@
  */
 function tiny_hestia_scripts() {
 
-	wp_enqueue_style( 'tiny-hestia-bootstrap', get_stylesheet_directory_uri() . '/assets/bootstrap/css/bootstrap.min.css' );
-	wp_enqueue_style( 'tiny-hestia-style', get_stylesheet_uri() );
-	wp_enqueue_script( 'tiny-hestia-jquery-bootstrap', get_stylesheet_directory_uri() . '/assets/bootstrap/js/bootstrap.min.js', array( 'jquery' ), HESTIA_VENDOR_VERSION, true );
-	wp_enqueue_script( 'tiny-hestia-scripts', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array( /*'jquery-hestia-material', 'jquery-ui-core'*/ ),HESTIA_VERSION, true );
+	wp_enqueue_style( 'tiny-hestia-bootstrap', get_stylesheet_directory_uri() . '/assets/bootstrap/css/bootstrap.min.css', array(), TINY_HESTIA_VERSION );
+	wp_enqueue_style( 'tiny-hestia-style', get_stylesheet_uri(), array(), TINY_HESTIA_VERSION );
+	wp_enqueue_script( 'tiny-hestia-jquery-bootstrap', get_stylesheet_directory_uri() . '/assets/bootstrap/js/bootstrap.min.js', array( 'jquery' ), TINY_HESTIA_VERSION, true );
+	wp_enqueue_script( 'tiny-hestia-scripts', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array(),TINY_HESTIA_VERSION, true );
 
 }
 add_action( 'wp_enqueue_scripts', 'tiny_hestia_scripts',99);
@@ -77,7 +78,7 @@ add_action( 'wp_enqueue_scripts', 'tiny_hestia_dequeue_script', 20 );
  * @since 1.0.0
  */
 function tiny_hestia_customizer_scripts() {
-	wp_enqueue_script( 'tiny-hestia-customizer-scripts', get_stylesheet_directory_uri() . '/assets/js/customizer-controls.js', array( 'jquery', 'customize-preview' ), HESTIA_VERSION, true );
+	wp_enqueue_script( 'tiny-hestia-customizer-scripts', get_stylesheet_directory_uri() . '/assets/js/customizer-controls.js', array( 'jquery', 'customize-preview' ), TINY_HESTIA_VERSION, true );
 }
 add_action( 'customize_controls_enqueue_scripts', 'tiny_hestia_customizer_scripts' );
 

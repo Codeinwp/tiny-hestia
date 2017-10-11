@@ -6,7 +6,7 @@
  * @since 1.0.0
  */
 
-define( 'TINY_HESTIA_VERSION', '1.0.5');
+define( 'TINY_HESTIA_VERSION', '1.0.6');
 /**
  * Enqueue style of parent theme and styles from current child theme.
  *
@@ -20,7 +20,7 @@ function tiny_hestia_scripts() {
 	wp_enqueue_script( 'tiny-hestia-scripts', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array(),TINY_HESTIA_VERSION, true );
 
 }
-add_action( 'wp_enqueue_scripts', 'tiny_hestia_scripts',99);
+add_action( 'wp_enqueue_scripts', 'tiny_hestia_scripts',9);
 
 /**
  * Dequeue scripts that are no longer used
@@ -297,3 +297,13 @@ function tiny_hestia_default_fonts(){
 }
 add_filter('hestia_headings_default', 'tiny_hestia_default_fonts');
 add_filter('hestia_body_font_default', 'tiny_hestia_default_fonts');
+
+
+/**
+ * Change the handle where to add inline style.
+ * @return string
+ */
+function tiny_hestia_custom_css(){
+	return 'tiny-hestia-style';
+}
+add_filter('hestia-custom-color-handle','tiny_hestia_custom_css');

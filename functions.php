@@ -6,7 +6,7 @@
  * @since 1.0.0
  */
 
-define( 'TINY_HESTIA_VERSION', '1.0.5');
+define( 'TINY_HESTIA_VERSION', '1.0.6');
 /**
  * Enqueue style of parent theme and styles from current child theme.
  *

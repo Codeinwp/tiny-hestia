@@ -6,7 +6,7 @@ Description: Tiny Hestia is a child theme for blogging enthusiasts and for page 
 Author: ThemeIsle
 URI: https://www.themeisle.com/
 Template: hestia
-Version: 1.0.5
+Version: 1.0.6
 Tags: blog, custom-logo, e-commerce, post-formats, grid-layout, one-column, two-columns, custom-background, custom-colors, custom-header, custom-menu, featured-image-header, featured-images, flexible-header, full-width-template, sticky-post, theme-options, threaded-comments, translation-ready
 */
 a, .btn.btn-border, .form-group.label-static label.control-label, .form-group.label-placeholder label.control-label, .form-group.label-floating label.control-label, .pagination a, .pagination span, .card-background:after, .hestia-top-bar .widget.widget_search form:not(.form-group), .hestia-top-bar .widget.widget_product_search form:not(.form-group), .hestia-top-bar .widget.widget_shopping_cart .cart_list, .hestia-top-bar li a[href*="facebook.com"]:before, .hestia-top-bar li a[href*="twitter.com"]:before, .hestia-top-bar li a[href*="pinterest.com"]:before, .hestia-top-bar li a[href*="google.com"]:before, .hestia-top-bar li a[href*="linkedin.com"]:before, .hestia-top-bar li a[href*="dribbble.com"]:before, .hestia-top-bar li a[href*="github.com"]:before, .hestia-top-bar li a[href*="youtube.com"]:before, .hestia-top-bar li a[href*="instagram.com"]:before, .hestia-top-bar li a[href*="reddit.com"]:before, .hestia-top-bar li a[href*="tumblr.com"]:before, .hestia-top-bar li a[href*="behance.com"]:before, .hestia-top-bar li a[href*="snapchat.com"]:before, .hestia-top-bar li a[href*="deviantart.com"]:before, .hestia-top-bar li a[href*="vimeo.com"]:before {
@@ -167,11 +167,11 @@ h6 {
   text-transform: uppercase;
 }
 
-.hestia-title, .title, .card-title, .info-title, .footer-brand, .footer-big h4, .footer-big h5, .media .media-heading {
+.hestia-title, .title, .card-title, .info-title, .footer-brand, .footer-big h4, .footer-big h5, .media .media-heading, .woocommerce.archive .blog-post .products .product-category h2 {
   font-family: "Roboto Slab", "Times New Roman", serif;
   font-weight: 700;
 }
-.hestia-title, .hestia-title a, .title, .title a, .card-title, .card-title a, .info-title, .info-title a, .footer-brand, .footer-brand a, .footer-big h4, .footer-big h4 a, .footer-big h5, .footer-big h5 a, .media .media-heading, .media .media-heading a {
+.hestia-title, .hestia-title a, .title, .title a, .card-title, .card-title a, .info-title, .info-title a, .footer-brand, .footer-brand a, .footer-big h4, .footer-big h4 a, .footer-big h5, .footer-big h5 a, .media .media-heading, .media .media-heading a, .woocommerce.archive .blog-post .products .product-category h2, .woocommerce.archive .blog-post .products .product-category h2 a {
   color: #3C4858;
   text-decoration: none;
   word-wrap: break-word;
@@ -4040,7 +4040,7 @@ aside .widget a {
   .pricing .row,
   .hestia-testimonials .row,
   .testimonials .row,
-  section.blogs .row,
+  section.hestia-blogs .row,
   .contactus .row {
     padding: 0 10px;
   }
@@ -5103,6 +5103,7 @@ footer .wpml-ls-item-legacy-dropdown-click a {
 .fl-builder-edit .main > section:hover .hestia-pagebuilder-frontpage-controls {
   display: block;
 }
+
 
 .fa.fa-cart-plus{
   background: url(assets/img/iconsspritsheet.png) no-repeat;

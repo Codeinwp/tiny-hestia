@@ -167,11 +167,11 @@ h6 {
   text-transform: uppercase;
 }
 
-.hestia-title, .title, .card-title, .info-title, .footer-brand, .footer-big h4, .footer-big h5, .media .media-heading {
+.hestia-title, .title, .card-title, .info-title, .footer-brand, .footer-big h4, .footer-big h5, .media .media-heading{
   font-family: "Roboto Slab", "Times New Roman", serif;
   font-weight: 700;
 }
-.hestia-title, .hestia-title a, .title, .title a, .card-title, .card-title a, .info-title, .info-title a, .footer-brand, .footer-brand a, .footer-big h4, .footer-big h4 a, .footer-big h5, .footer-big h5 a, .media .media-heading, .media .media-heading a {
+.hestia-title, .hestia-title a, .title, .title a, .card-title, .card-title a, .info-title, .info-title a, .footer-brand, .footer-brand a, .footer-big h4, .footer-big h4 a, .footer-big h5, .footer-big h5 a, .media .media-heading, .media .media-heading a{
   color: #3C4858;
   text-decoration: none;
   word-wrap: break-word;
@@ -4040,7 +4040,7 @@ aside .widget a {
   .pricing .row,
   .hestia-testimonials .row,
   .testimonials .row,
-  section.blogs .row,
+  section.hestia-blogs .row,
   .contactus .row {
     padding: 0 10px;
   }
@@ -5103,6 +5103,7 @@ footer .wpml-ls-item-legacy-dropdown-click a {
 .fl-builder-edit .main > section:hover .hestia-pagebuilder-frontpage-controls {
   display: block;
 }
+
 
 .fa.fa-cart-plus{
   background: url(assets/img/iconsspritsheet.png) no-repeat;

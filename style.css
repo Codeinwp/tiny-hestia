@@ -167,11 +167,11 @@ h6 {
   text-transform: uppercase;
 }
 
-.hestia-title, .title, .card-title, .info-title, .footer-brand, .footer-big h4, .footer-big h5, .media .media-heading, .woocommerce.archive .blog-post .products .product-category h2 {
+.hestia-title, .title, .card-title, .info-title, .footer-brand, .footer-big h4, .footer-big h5, .media .media-heading{
   font-family: "Roboto Slab", "Times New Roman", serif;
   font-weight: 700;
 }
-.hestia-title, .hestia-title a, .title, .title a, .card-title, .card-title a, .info-title, .info-title a, .footer-brand, .footer-brand a, .footer-big h4, .footer-big h4 a, .footer-big h5, .footer-big h5 a, .media .media-heading, .media .media-heading a, .woocommerce.archive .blog-post .products .product-category h2, .woocommerce.archive .blog-post .products .product-category h2 a {
+.hestia-title, .hestia-title a, .title, .title a, .card-title, .card-title a, .info-title, .info-title a, .footer-brand, .footer-brand a, .footer-big h4, .footer-big h4 a, .footer-big h5, .footer-big h5 a, .media .media-heading, .media .media-heading a{
   color: #3C4858;
   text-decoration: none;
   word-wrap: break-word;

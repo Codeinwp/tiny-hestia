@@ -306,4 +306,4 @@ add_filter('hestia_body_font_default', 'tiny_hestia_default_fonts');
 function tiny_hestia_custom_css(){
 	return 'tiny-hestia-style';
 }
-add_filter('hestia-custom-color-handle','tiny_hestia_custom_css');
+add_filter('hestia_custom_color_handle','tiny_hestia_custom_css');

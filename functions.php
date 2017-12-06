@@ -14,11 +14,16 @@ define( 'TINY_HESTIA_VERSION', '1.0.7');
  */
 function tiny_hestia_scripts() {
 
+	wp_enqueue_style( 'hestia-style', get_template_directory_uri() . '/style.css' );
 	wp_enqueue_style( 'tiny-hestia-bootstrap', get_stylesheet_directory_uri() . '/assets/bootstrap/css/bootstrap.min.css', array(), TINY_HESTIA_VERSION );
-	wp_enqueue_style( 'tiny-hestia-style', get_stylesheet_uri(), array(), TINY_HESTIA_VERSION );
+	wp_enqueue_style( 'tiny-hestia-style', get_stylesheet_uri(), array('hestia-style'), TINY_HESTIA_VERSION );
 	wp_enqueue_script( 'tiny-hestia-jquery-bootstrap', get_stylesheet_directory_uri() . '/assets/bootstrap/js/bootstrap.min.js', array( 'jquery' ), TINY_HESTIA_VERSION, true );
 	wp_enqueue_script( 'tiny-hestia-scripts', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array(),TINY_HESTIA_VERSION, true );
 
+	if ( get_stylesheet() !== get_template() ) {
+		add_filter( 'pre_update_option_theme_mods_' . get_stylesheet(), 'tiny_hestia_update_theme_mods', 10, 2 );
+		add_filter( 'pre_option_theme_mods_' . get_stylesheet(), 'tiny_hestia_get_theme_mods' );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'tiny_hestia_scripts',9);
 
@@ -42,9 +47,6 @@ function tiny_hestia_dequeue_script() {
 
 	// Font awesome
 	wp_deregister_style('font-awesome');
-
-	// Hestia Style
-	wp_deregister_style('hestia_style');
 
 	// Deregister Customizer Style
 	if ( is_customize_preview() ) {
@@ -117,11 +119,6 @@ function tiny_hestia_update_theme_mods( $value, $old_value ){
  */
 function tiny_hestia_get_theme_mods( $default ){
 	return get_option( 'theme_mods_' . get_template(), $default );
-}
-
-if ( get_stylesheet() !== get_template() ) {
-	add_filter( 'pre_update_option_theme_mods_' . get_stylesheet(), 'tiny_hestia_update_theme_mods', 10, 2 );
-	add_filter( 'pre_option_theme_mods_' . get_stylesheet(), 'tiny_hestia_get_theme_mods' );
 }
 
 /**

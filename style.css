@@ -5,7 +5,7 @@ Description: Tiny Hestia is a child theme for blogging enthusiasts and for page 
 Author: ThemeIsle
 URI: https://www.themeisle.com/
 Template: hestia
-Version: 1.0.7
+Version: 1.0.8
 Tags: blog, custom-logo, e-commerce, post-formats, grid-layout, one-column, two-columns, custom-background, custom-colors, custom-header, custom-menu, featured-image-header, featured-images, flexible-header, full-width-template, sticky-post, theme-options, threaded-comments, translation-ready
 */
 
@@ -13,12 +13,4 @@ Tags: blog, custom-logo, e-commerce, post-formats, grid-layout, one-column, two-
     background: url(assets/img/iconsspritsheet.png) no-repeat;
     display: block;
     height: 17px;
-}
-
-.search-form:after{
-    content: '';
-    background: url(assets/img/iconsspritsheet.png) no-repeat;
-    background-position: 18px -21px;
-    width: 36px;
-    height: 22px;
 }

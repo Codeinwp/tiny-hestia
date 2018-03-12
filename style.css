@@ -14,3 +14,8 @@ Tags: blog, custom-logo, e-commerce, post-formats, grid-layout, one-column, two-
     display: block;
     height: 17px;
 }
+
+.entry-social .btn {
+  display: inline-block;
+  text-align: center;
+}

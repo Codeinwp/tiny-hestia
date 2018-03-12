@@ -220,3 +220,34 @@ jQuery(document).ready(function ($) {
         return ((elemTop < viewportBottom) && (elemBottom > viewportTop));
     }
 });
+
+/* Scroll to Top functionality */
+
+(function ( $ ) {
+
+    var showScrollToTop = 0;
+    $( window ).on( 'scroll', function () {
+
+        var y_scroll_pos = window.pageYOffset;
+        var scroll_pos_test = $( 'header' ).height();
+
+        if ( y_scroll_pos > scroll_pos_test && showScrollToTop === 0 ) {
+            $( '.hestia-scroll-to-top' ).addClass( 'hestia-fade' );
+            showScrollToTop = 1;
+        }
+
+        if ( y_scroll_pos < scroll_pos_test && showScrollToTop === 1 ) {
+            $( '.hestia-scroll-to-top' ).removeClass( 'hestia-fade' );
+            showScrollToTop = 0;
+        }
+
+    } );
+
+    $( '.hestia-scroll-to-top' ).on( 'click', function () {
+        window.scroll( {
+            top: 0,
+            behavior: 'smooth'
+        } );
+    } );
+
+}( jQuery ));

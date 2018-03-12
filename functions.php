@@ -128,8 +128,6 @@ function tiny_hestia_remove_actions_and_filters() {
 
 	remove_filter( 'hestia_filter_features', 'hestia_filter_features' );
 
-	remove_action( 'hestia_blog_social_icons', 'hestia_social_icons' );
-
 }
 add_action( 'after_setup_theme', 'tiny_hestia_remove_actions_and_filters', 0 );
 
